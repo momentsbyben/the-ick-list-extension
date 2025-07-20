@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ick List - Popup</title>
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="options_popup.css" />
+</head>
+<body>
+  <div class="popup-container">
+    <img src="icons/flame.png" alt="Streak Flame" class="flame-icon" />
+    <h1>The Ick List</h1>
+
+    <div class="streak-box">
+      <img src="icons/flame.png" alt="Flame" class="flame-icon-inline" /> <span id="currentStreak">Daily Streak: 0 days</span>
+    </div>
+
+    <div id="weeklyUsageChart" class="week-tracker"></div>
+
+    <h2>Your Ick Words</h2>
+    <div id="ickWordList" class="word-chip-container">
+      <p class="no-words-message">No words loaded. Add some below!</p>
+    </div>
+
+    <input type="text" id="ickWordInput" placeholder="Add new ick word" />
+    <button class="button primary" id="addIckWordBtn">Add Word</button>
+    <hr>
+    <div class="toggle-switch-group">
+      <div class="toggle-switch">
+        <label>
+          <input type="checkbox" id="safeModeToggle" />
+          <div class="toggle-content">
+            <span class="toggle-label">🔒 Enable Safe Mode</span>
+            <span class="subtext">Increases filtering sensitivity and softens the interface on censored content.</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="toggle-switch">
+        <label>
+          <input type="checkbox" id="calmModeToggle" />
+          <div class="toggle-content">
+            <span class="toggle-label">🎨 Enable Calm Mode</span>
+            <span class="subtext">Applies a light, soothing color scheme to the extension interface.</span>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <p id="modeStatusText" class="subtext">Loading mode status...</p>
+    
+    <div class="button-group">
+      <button class="button secondary" id="refreshPageBtn">🔄 Refresh Page</button>
+      <button class="button secondary" id="optionsBtn">⚙️ Options</button>
+      <button class="button secondary" id="statsBtn">📈 View Stats</button>
+      <button class="button secondary" id="supportBtn">💬 Support</button>
+      <button class="button secondary" id="checkinBtn">📝 Daily Check-in</button>
+    </div>
+
+    <p class="footer">🌸 You’re safe here.</p>
+    
+    <div id="toastContainer"></div>
+  </div>
+
+  <script src="utils.js"></script>
+  <script src="nav.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

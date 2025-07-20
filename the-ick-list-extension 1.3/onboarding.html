@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome to The Ick List</title>
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="shared.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>👋 Welcome</h1>
+    <p class="intro">Let’s personalize your experience. This info stays on your device and helps us guide you to the right support.</p>
+
+    <form id="onboardingForm">
+      <label for="age">Your age:</label>
+      <input type="number" id="age" name="age" min="10" max="100" required />
+
+      <label for="gender">Your gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">Select...</option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+        <option value="nonbinary">Non-binary</option>
+        <option value="preferNot">Prefer not to say</option>
+      </select>
+
+      <label for="country">Your country:</label>
+      <select id="country" name="country" required>
+        <option value="">Select...</option>
+        <option value="UK">United Kingdom</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="AU">Australia</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label for="supportType">What kind of support are you looking for?</label>
+      <input type="text" id="supportType" name="supportType" placeholder="e.g., anxiety, stress, focus" />
+
+      <label for="goal">What's your main goal with The Ick List?</label>
+      <textarea id="goal" name="goal" rows="3" placeholder="e.g., reduce negative social media exposure, manage triggers"></textarea>
+
+      <button type="submit" class="primary">Continue →</button>
+    </form>
+
+    <footer>
+      <p class="note">You can update this info later in settings.</p>
+    </footer>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="utils.js"></script>
+  <script src="onboarding.js"></script>
+</body>
+</html>

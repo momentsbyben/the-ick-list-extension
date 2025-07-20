@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Ick List - Your Stats</title>
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="stats.css" />
+</head>
+<body>
+  <div class="stats-container">
+    <p id="affirmation" class="affirmation">🌼 You’re doing your best, and that’s enough.</p>
+    <h1>📊 Your Emotional Safety Stats</h1>
+
+    <section class="card">
+      <h2>🧠 Reveal Stats</h2>
+      <p id="mostRevealed" class="highlight"></p>
+      <ul id="revealStatsList">Loading...</ul>
+      <div class="button-row">
+        <button id="refreshStatsBtn" class="button">🔄 Refresh Stats</button>
+        <button id="exportStatsBtn" class="button">📁 Export Stats</button>
+        <button id="resetStatsBtn" class="button">🗑️ Reset Stats</button>
+      </div>
+      <p class="warning">Resetting will permanently delete your reveal history. Proceed mindfully. 💛</p>
+    </section>
+
+    <section class="card">
+      <h2>🔥 Daily Streak</h2>
+      <p id="currentStreakEl">Loading...</p>
+      <div id="weeklyUsageChart" class="week-tracker"></div>
+    </section>
+
+    <section class="card">
+      <h2>🛡️ Modes</h2>
+      <p>Modes are applied visually to this page based on your settings.</p>
+    </section>
+
+    <footer>
+      <button id="optionsNavBtn" class="button tertiary">← Back to Settings</button>
+    </footer>
+
+    <div id="confirmModal" class="modal hidden">
+      <div class="modal-content">
+        <p>Are you sure you want to reset your stats? This cannot be undone.</p>
+        <div class="modal-buttons">
+          <button id="confirmReset" class="button danger">Yes, reset</button> <button id="cancelReset" class="button secondary">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="utils.js"></script>
+  <script src="nav.js"></script>
+  <script src="stats.js"></script>
+</body>
+</html>

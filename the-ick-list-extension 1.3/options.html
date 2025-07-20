@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ick List - Options</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="shared.css" />
+    <link rel="stylesheet" href="options_popup.css" />
+</head>
+<body>
+    <div class="options-container">
+        <div class="your-ick-words-section">
+            <h3>Your Ick Words</h3>
+            <p class="subtext">Words you're currently censoring.</p>
+            <div id="ickWordsDisplayContainer" class="word-chip-container">
+                <p class="no-words-message">No words added yet. Add some above or from suggestions!</p>
+            </div>
+            <hr> </div>
+
+        <h2>✏️ Edit Your Ick List</h2>
+        <p class="subtext">Enter words or phrases to censor, separated by new lines.</p>
+
+        <textarea id="ickWordsTextarea" rows="6" placeholder="e.g. violence&#10;panic&#10;nsfw&#10;cancer"></textarea>
+        <button id="saveIckListBtn" class="button primary">💾 Save Ick List</button> 
+        
+        <hr> 
+        
+        <h3>🌟 Suggested Icks</h3>
+        <div id="suggestedWordsContainer" class="word-chip-container">
+            <p>Loading suggested words...</p>
+        </div>
+        <button id="addAllSuggestedBtn" class="button secondary" style="margin-top: 10px;">Add All Suggested</button>
+
+        <hr>
+
+        <div class="toggle-switch-group">
+            <div class="toggle-switch">
+                <label> <input type="checkbox" id="safeModeToggle" />
+                    <div class="toggle-content"> <span class="toggle-label">🛡️ Enable Safe Mode</span>
+                        <span class="subtext">Safe Mode increases filtering sensitivity and softens the interface on censored content.</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="toggle-switch">
+                <label> <input type="checkbox" id="calmModeToggle" />
+                    <div class="toggle-content"> <span class="toggle-label">🎨 Enable Calm Mode</span>
+                        <span class="subtext">Calm Mode applies a light, soothing color scheme to the extension interface.</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <hr>
+        <div class="reset-settings-section">
+            <button id="resetSettingsBtn" class="button danger">⚠️ Reset All Settings</button>
+            <p class="subtext danger-text">This will clear ALL your Ick List settings, statistics, and profile data.</p>
+        </div>
+
+        <div class="nav-buttons">
+            <button id="onboardingNavBtn" class="button secondary">🧭 Onboarding</button> 
+            <button id="supportNavBtn" class="button secondary">💬 Support</button> 
+            <button id="checkinNavBtn" class="button secondary">📝 Check-In</button> 
+            <button id="statsNavBtn" class="button secondary">📊 Stats</button> 
+            <button id="popupNavBtn" class="button secondary">🏠 Popup</button> 
+        </div>
+
+        <div class="footer">
+            <p>🌸 Your list is stored privately in your browser.</p>
+        </div>
+    </div>
+
+    <div id="confirmResetModal" class="modal hidden">
+        <div class="modal-content">
+            <p>Are you sure you want to reset ALL settings?</p>
+            <p class="warning-text">This action cannot be undone and will erase your Ick List, stats, and profile.</p>
+            <div class="modal-buttons">
+                <button id="confirmReset" class="button danger">Yes, Reset</button>
+                <button id="cancelReset" class="button secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <script src="utils.js"></script>
+    <script src="nav.js"></script>
+    <script src="options.js"></script>
+</body>
+</html>

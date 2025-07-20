@@ -1,0 +1,321 @@
+/* content-style.css */
+
+/* === Core Hidden Word Styling === */
+.ick-hidden {
+    /* Use CSS variable for background color, defined in base.css */
+    background-color: var(--ick-blur-bg-color); /* Now uses the variable */
+    color: transparent; /* Hide text */
+    filter: blur(4px); /* Blur the text */
+    border-radius: 6px;
+    padding: 2px 6px; /* Keep padding for click area */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-style: italic;
+    user-select: none; /* Prevent text selection */
+    position: relative; /* For the 'censored' pseudo-element (if re-used) */
+    display: inline-block;
+    line-height: 1.2;
+    /* Ensure the blur is applied to text that actually exists */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5); /* Helps with the blur effect */
+}
+
+/* Safe Mode specific styling for blurred words */
+/* If the user is in safe mode and the countdown is active */
+.ick-hidden.safe-mode {
+    filter: blur(8px); /* More intense blur for safe mode */
+    /* background-color is handled by the :root variable based on calm-mode */
+}
+
+/* Calm Mode specific styling for blurred words */
+/* .ick-hidden.calm-mode {
+     No special styling for calm mode blur itself beyond the base .ick-hidden and body.calm-mode
+     The background-color changes via the --ick-blur-bg-color variable in base.css
+} */
+
+
+.ick-hidden:hover {
+    background-color: var(--ick-blur-bg-color); /* Keep the background consistent */
+    filter: blur(2px); /* Slightly less blur on hover */
+}
+
+.ick-hidden::before {
+    /* Removed content: "censored"; as it's not needed for just blur background */
+    content: ""; /* Keep empty or remove this block if not needed for other purposes */
+    position: absolute; /* Keep absolute for potential future use or if something else uses it */
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    pointer-events: none;
+    display: block;
+    filter: none;
+}
+
+/* Style for when Ick word is revealed */
+.revealed {
+    color: #444; /* Reveal original text color */
+    background-color: #ffda6b; /* Light yellow background when revealed */
+    padding: 2px 6px; /* Padding for revealed state */
+    border-radius: 6px; /* Border-radius for revealed state */
+    font-style: normal;
+    filter: none; /* Remove blur */
+    text-shadow: none;
+    animation: fadeIn 0.4s ease; /* Fade in animation */
+    position: static;
+    display: inline;
+}
+
+.revealed::before {
+    content: none; /* Remove pseudo-element when revealed */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* === Reveal All / Hide All Buttons (floating on page) === */
+/* Shared styles for both buttons to ensure consistent sizing */
+.reveal-all-btn, #ick-hide-all-btn {
+    position: fixed; /* Fixed position relative to viewport */
+    background: #a3e4d7; /* Primary button color */
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    z-index: 9999; /* High z-index to be on top */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap; /* Prevent text wrapping */
+    min-width: 120px; /* Ensures consistent width */
+    justify-content: center; /* Centers content horizontally if width is larger than text */
+}
+
+/* Specific positioning for Reveal All button */
+.reveal-all-btn {
+    bottom: 20px;
+    right: 20px;
+}
+
+/* Specific positioning for Hide All button */
+/* This ID needs to be applied to the Hide All button element in content.js */
+#ick-hide-all-btn {
+    /* Option 1: Stacked above Reveal All (your original setup) */
+    bottom: 70px; /* Position it above the Reveal All button */
+    right: 20px; /* Explicitly set right for consistency */
+
+    /* Option 2 (Uncomment if you want them in the EXACT same spot and toggle visibility with JS) */
+    /* bottom: 20px; */
+    /* right: 20px; */
+    /* If using this, ensure your JS hides one when the other is shown. */
+}
+
+.reveal-all-btn:hover, #ick-hide-all-btn:hover {
+    transform: scale(1.05);
+    background: #8dddc9;
+}
+
+
+/* === Toast Notification for Content Script === */
+.content-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f8d7da; /* Reddish for warning/info on page */
+    color: #721c24;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.3s ease;
+    z-index: 9999;
+    transform: translateX(-50%) translateY(100%); /* Start off-screen */
+}
+
+.content-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0); /* Slide up */
+}
+
+.content-toast.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.content-toast.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.content-toast.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+
+
+/* === Countdown Overlay (for timed reveals) === */
+.countdown-overlay {
+    position: absolute; /* Will be positioned relative to the blurred word's container */
+    background: #e6e0ff; /* Light purple */
+    color: #3a2f6c; /* Darker purple text */
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 9999;
+    pointer-events: none; /* Allow clicks to pass through */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-weight: 500;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease;
+    min-width: 80px;
+    text-align: center;
+    /* These will be set by JS, but keeping some defaults */
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -100%); /* Adjusted: to position above the word */
+}
+
+.countdown-overlay.show {
+    opacity: 1;
+}
+
+/* === Reveal Anyway Modal (for confirmation on external page) === */
+.ick-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.ick-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.ick-modal-content {
+    background: #fff;
+    padding: 20px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    max-width: 320px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.ick-modal.show .ick-modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ick-modal-content p {
+    margin-bottom: 16px;
+    font-size: 1em;
+    color: #333;
+}
+
+.ick-modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.ick-modal-buttons button {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    font-size: 0.95em;
+}
+
+.ick-modal-buttons button:active {
+    transform: translateY(1px);
+}
+
+.ick-confirm {
+    background: #a3e4d7;
+    color: #1c3c36;
+}
+
+.ick-confirm:hover {
+    background: #8dddc9;
+}
+
+.ick-cancel {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.ick-cancel:hover {
+    background: #f5c6cb;
+}
+
+/* === Calm Mode Theme Overrides for Content Script UI === */
+body.calm-mode .reveal-all-btn,
+body.calm-mode #ick-hide-all-btn { /* Apply calm mode styles to both buttons */
+    background: #d6e4f0;
+    color: #2c3e50;
+}
+
+body.calm-mode .reveal-all-btn:hover,
+body.calm-mode #ick-hide-all-btn:hover {
+    transform: scale(1.05); /* Keep hover effect */
+    background: #c0d6ec;
+}
+
+body.calm-mode .content-toast {
+    background: #e0f7fa;
+    color: #006064;
+}
+
+body.calm-mode .countdown-overlay {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+body.calm-mode .ick-modal-content {
+    background: #fefefe;
+    border: 1px solid #dce3f0;
+}
+
+body.calm-mode .ick-confirm {
+    background: #d6e4f0;
+    color: #2c3e50;
+}
+
+body.calm-mode .ick-confirm:hover {
+    background: #c0d6ec;
+}
+
+body.calm-mode .ick-cancel {
+    background: #eee;
+    color: #666;
+}
+
+body.calm-mode .ick-cancel:hover {
+    background: #ddd;
+}

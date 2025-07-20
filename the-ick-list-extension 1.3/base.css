@@ -1,0 +1,66 @@
+/* === Base Styles for All Pages === */
+
+/* Universal Box-Sizing Reset - Essential for consistent layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Root CSS Variables for Theme Colors */
+:root {
+    /* Default mode blur background color - A soft pink */
+    --ick-blur-bg-color: rgba(255, 192, 203, 0.3);
+    /* Calm mode blur background color - A light blue */
+    --ick-calm-blur-bg-color: rgba(173, 216, 230, 0.3);
+
+    /* Potentially add other common theme colors here if they aren't already in shared.css */
+    --primary-color: #7a6ee6; /* Example: Based on your link color */
+    --secondary-color: #f0f7fd; /* Example: Based on your background gradient */
+    --text-color: #333;
+    --heading-color: #444;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    /* This background is now defined ONLY here, removing duplication */
+    background: linear-gradient(to bottom right, #fdf6f0, #f0f7fd);
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    font-size: 16px; /* A good base font size */
+    line-height: 1.6; /* Improves readability */
+    overflow-x: hidden; /* Prevents horizontal scrollbar */
+}
+
+/* When calm-mode is active on the body, override the blur background color and potentially other theme colors */
+body.calm-mode {
+    --ick-blur-bg-color: var(--ick-calm-blur-bg-color);
+    /* Example: If you want to change body background or other elements in calm mode: */
+    /* background: linear-gradient(to bottom right, #e0f7fa, #e0eaff); */
+    /* color: #222; */
+}
+
+
+/* Universal Link Styles */
+a {
+    color: #7a6ee6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #5d50bd;
+}
+
+/* Universal Heading Styles */
+h1, h2 {
+    color: #444; /* This color is now defined ONLY here, removing duplication */
+    margin-top: 0; /* Common reset for top margin */
+    margin-bottom: 15px; /* Consistent spacing below headings */
+}
+
+/* Basic List Reset */
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* Remove default list bullets */
+}

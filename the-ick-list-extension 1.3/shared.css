@@ -1,0 +1,685 @@
+/* === Shared Styles for Multiple Pages === */
+
+/* Removed the old body {} block - now in base.css */
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    /* color: #444; -- Removed, now in base.css */
+    margin-bottom: 20px;
+}
+
+.intro {
+    text-align: center;
+    font-size: 1.1em; /* Slightly larger for emphasis */
+    color: #555;
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: #444; /* Give labels a slightly stronger color */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"], /* Add if you expect email inputs */
+select,
+textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1em; /* Match body font size for consistency */
+    width: 100%; /* Ensure they take full width */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05); /* Subtle inner shadow */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #7a6ee6; /* Highlight on focus */
+    box-shadow: 0 0 0 2px rgba(122, 110, 230, 0.3);
+    outline: none; /* Remove default outline */
+}
+
+/* Base button styles */
+button.button { /* Universal button class, apply to all buttons */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+}
+
+button.button:active {
+    transform: translateY(1px); /* Little press effect */
+}
+
+button.primary {
+    background: #a0d8ef; /* Light blue */
+    color: #333;
+}
+
+button.primary:hover {
+    background: #8ccce8;
+}
+
+button.secondary {
+    background: #dceeff; /* Lighter blue */
+    color: #333;
+    border: 1px solid #c0e4ff; /* Subtle border */
+}
+
+button.secondary:hover {
+    background: #c0e4ff;
+}
+
+button.tertiary { /* Used for "Back to Settings" etc. */
+    background: transparent;
+    color: #7a6ee6;
+    border: 1px solid #7a6ee6;
+    padding: 8px 12px; /* Slightly smaller */
+    font-size: 0.9em;
+}
+
+button.tertiary:hover {
+    background: rgba(122, 110, 230, 0.1);
+    color: #5d50bd;
+}
+
+button.danger { /* For reset buttons */
+    background: #ff6b6b; /* Red */
+    color: #fff;
+}
+
+button.danger:hover {
+    background: #e65a5a;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: #777;
+}
+
+.nav-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.nav-buttons button { /* Base style for all nav buttons, overrides button.button if necessary */
+    padding: 8px 12px;
+    /* Removed redundant border definition as it's often set by button.secondary */
+    border-radius: 8px;
+    /* background: #dceeff; -- Managed by secondary class now */
+    /* color: #333; -- Managed by secondary class now */
+    font-weight: 500;
+    font-size: 0.9em; /* Slightly smaller for nav buttons */
+    cursor: pointer;
+    transition: background 0.2s ease;
+    /* Adding border from secondary class for consistency */
+    border: 1px solid #c0e4ff;
+}
+
+/* Specific style for active navigation button */
+.nav-buttons button.active-nav { /* Renamed from .active to .active-nav for clarity */
+    background: #b3e5fc; /* Distinct color for active state */
+    font-weight: bold;
+    box-shadow: 0 0 0 2px #90caf9; /* Blue border */
+}
+
+/* Cards */
+.card {
+    background: #ffffffcc; /* Slightly transparent white */
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    backdrop-filter: blur(5px); /* Add subtle blur for transparent background */
+}
+.card h2 {
+    margin-top: 0;
+    color: #555;
+    font-size: 1.4em; /* Slightly larger heading for cards */
+}
+
+/* Support Items (used in support.html) */
+.support-item {
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+.support-item:last-child {
+    border-bottom: none;
+}
+.support-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 1.2em;
+}
+.support-item p {
+    font-size: 0.95em;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+/* Utility Text Classes */
+.subtext {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: -8px; /* Pull closer to preceding element */
+    margin-bottom: 15px;
+}
+
+.note {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 10px;
+}
+
+.warning {
+    color: #e67e22; /* Orange for warnings */
+    font-weight: 500;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+.danger-text { /* For text warning of dangerous actions like reset */
+    color: #ff6b6b; /* Red */
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+.error-message { /* For JavaScript error messages in UI */
+    color: #e74c3c;
+    font-weight: 600;
+    background-color: #ffebeb;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #e74c3c;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.highlight { /* Used in stats.html for numbers, etc. */
+    color: #7a6ee6; /* Same as link color */
+    font-weight: bold;
+}
+
+/* === Word Chips === */
+.word-chip-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Spacing between chips */
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    min-height: 40px; /* Ensure some height even if empty */
+    align-items: flex-start; /* Align chips to the top */
+}
+
+.word-chip {
+    display: flex;
+    align-items: center;
+    background-color: #e0f2f7; /* Light blue/teal background */
+    color: #2c3e50; /* Dark text */
+    padding: 6px 10px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.9em;
+    font-weight: 500;
+    gap: 5px; /* Space between word and delete button */
+    border: 1px solid #cce9f0;
+    white-space: nowrap; /* Keep word and X on one line */
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.word-chip:hover {
+    background-color: #d0eff7;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.word-chip .delete-btn {
+    background: none;
+    border: none;
+    color: #777; /* Grey X */
+    font-weight: bold;
+    font-size: 1.1em;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1; /* Align 'X' vertically */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.word-chip .delete-btn:hover {
+    color: #e74c3c; /* Red on hover */
+    transform: scale(1.1);
+}
+
+/* Horizontal Rule (for separators) */
+hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 20px 0;
+}
+
+/* Toggle Switch Styles (consistent across popup and options) */
+.toggle-switch-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.toggle-switch {
+    display: flex;
+    align-items: flex-start; /* Align checkbox/toggle with the top of text */
+    gap: 15px;
+    padding: 10px;
+    background-color: #f0f8ff; /* Light background for the toggle area */
+    border-radius: 10px;
+    border: 1px solid #e0efff;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.toggle-switch.disabled {
+    opacity: 0.6;
+    pointer-events: none; /* Disable interaction */
+    background-color: #f9f9f9;
+    border-color: #eee;
+}
+
+.toggle-switch input[type="checkbox"] {
+    appearance: none; /* Hide default checkbox */
+    -webkit-appearance: none;
+    width: 40px;
+    height: 24px;
+    background-color: #ccc;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.toggle-switch input[type="checkbox"]::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input[type="checkbox"]:checked {
+    background-color: #a0d8ef; /* On color */
+}
+
+.toggle-switch input[type="checkbox"]:checked::before {
+    transform: translateX(16px); /* Move slider to right */
+}
+
+.toggle-switch .toggle-label {
+    flex-grow: 1;
+    font-weight: 600;
+    color: #444;
+    cursor: pointer; /* Ensure label is also clickable for toggle */
+}
+
+.toggle-switch .subtext { /* Subtext inside toggle-switch */
+    margin-top: 5px;
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+/* Modals (Confirmations) */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    text-align: center;
+    transform: translateY(-50px); /* Start slightly up */
+    opacity: 0;
+    animation: fadeInSlideIn 0.3s forwards;
+}
+
+.modal.hidden .modal-content {
+    animation: fadeOutSlideOut 0.3s forwards;
+}
+
+@keyframes fadeInSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutSlideOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    color: #444;
+}
+
+.modal-content p.warning-text { /* Specific warning for modals */
+    color: #e67e22;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.modal-buttons button {
+    min-width: 100px; /* Ensure buttons have consistent width */
+}
+
+/* Toast Notification Styles */
+#toastContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1001; /* Above modal if possible, but generally distinct */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.toast {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transform: translateY(20px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    min-width: 200px;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.toast.success {
+    background-color: #4CAF50; /* Green */
+}
+
+.toast.error {
+    background-color: #f44336; /* Red */
+}
+
+.toast.info {
+    background-color: #2196F3; /* Blue */
+}
+
+/* Section for Reset Settings in options.html */
+.reset-settings-section {
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.reset-settings-section .danger-text {
+    margin-top: 10px;
+    display: block; /* Ensure it takes full width below button */
+}
+
+/* Mood Selection in checkin.html */
+.mood-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.mood-row label {
+    display: flex;
+    flex-direction: column; /* Stack emoji and radio button if needed */
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 1.5em; /* Make emoji larger */
+}
+
+.mood-row label input[type="radio"] {
+    /* Hide default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0; /* Make it invisible */
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    position: absolute;
+}
+
+.mood-row label input[type="radio"]:checked + span {
+    /* Style the emoji or text next to checked radio */
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
+}
+
+.mood-row label:has(input[type="radio"]:checked) { /* Style the whole label when checked */
+    background-color: #e0f2f7; /* Highlight checked mood */
+    border-color: #a0d8ef;
+    box-shadow: 0 0 0 2px rgba(160, 216, 239, 0.5);
+}
+
+.mood-row label span {
+    display: block;
+    margin-top: 5px; /* Space between emoji and label text (if any) */
+}
+
+/* Icon for streak in popup */
+.flame-icon {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.flame-icon-inline {
+    width: 1.2em; /* Keep it sized correctly with text */
+    height: 1.2em;
+    vertical-align: middle; /* Align with text */
+    margin-right: 5px;
+    filter: brightness(1.1); /* Slightly brighter */
+}
+
+/* Flame Icon Glow Animation */
+.flame-icon.glow, .flame-icon-inline.glow {
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+
+.streak-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f8ff;
+    border: 1px solid #e0efff;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #444;
+}
+
+.streak-box .highlight {
+    color: #ff9800; /* Orange for streak number */
+}
+
+/* --- Weekly Usage Chart (Day Bars) --- */
+.week-tracker {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align bars to the bottom */
+    height: 60px; /* Overall height of the tracker */
+    background: #f0f0f0;
+    border-radius: 8px;
+    padding: 5px;
+    gap: 4px; /* Space between day bars */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.day-bar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push text to bottom, bar grows up */
+    align-items: center;
+    height: 100%; /* Take full height of container initially */
+    background: #e0e0e0; /* Default background for inactive days */
+    border-radius: 4px;
+    font-size: 0.7em;
+    color: #777;
+    font-weight: 500;
+    transition: background 0.3s ease, height 0.3s ease;
+    position: relative;
+    overflow: hidden; /* Hide anything outside */
+    padding-bottom: 5px; /* Space for text inside bar at bottom */
+}
+
+.day-bar.active {
+    background: linear-gradient(to top, #a0d8ef 0%, #7ec7e6 100%); /* Blue gradient for active */
+    color: #fff; /* White text for active */
+    height: 100%; /* Full height for active days */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Small animation for streak growth (optional, can be on individual bars) */
+.day-bar.active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    transform: translateY(100%);
+    animation: slideUpFade 0.5s ease-out forwards;
+}
+
+@keyframes slideUpFade {
+    to { transform: translateY(0); opacity: 0; }
+}
+
+
+/* Mode Status Text in popup */
+#modeStatusText {
+    font-size: 0.95em;
+    color: #666;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* Calm Mode specific styles for word chips and day bars */
+body.calm-mode .word-chip {
+    background-color: #e6f7ff; /* Lighter blue */
+    border-color: #c0e0ef;
+    color: #4a6c8e;
+}
+
+body.calm-mode .word-chip .delete-btn {
+    color: #889bb0;
+}
+
+body.calm-mode .word-chip .delete-btn:hover {
+    color: #a55; /* Still red for delete */
+}
+
+body.calm-mode .day-bar {
+    background: #f5f8fa;
+    color: #889bb0;
+}
+
+body.calm-mode .day-bar.active {
+    background: linear-gradient(to top, #b3e0ff 0%, #87c3f0 100%);
+    color: #335577;
+}

@@ -1,0 +1,90 @@
+/* === Styles Specific to Popup (popup.html) and Options (options.html) === */
+
+/* Popup Container */
+.popup-container {
+    width: 280px;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Added display: flex and flex-direction for better layout control in popup */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Consistent spacing */
+}
+
+/* Options Container */
+.options-container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Generally centers content, but adjust with flex as needed */
+    display: flex; /* Added for better internal layout management */
+    flex-direction: column;
+    gap: 20px; /* Space between main sections */
+}
+
+/* Headings specific to these pages */
+h1, h2 {
+    /* color: #7a6ee6; -- Removed, color is now in base.css */
+    margin-bottom: 12px;
+    font-size: 20px; /* Specific font size for these pages */
+}
+
+/* --- Elements unique or with specific overrides for popup/options --- */
+
+/* Flame Icon - specific hover effect and animation */
+.flame-icon {
+    /* Base width/height/margin in shared.css, this adds specific hover */
+    transition: transform 0.3s ease; /* Keep for hover effect */
+    margin-bottom: 10px; /* Specific margin for popup flame icon */
+}
+
+.flame-icon:hover {
+    transform: scale(1.1);
+}
+
+/* Flame Animation (for streak glow) */
+@keyframes flicker {
+    0% { filter: drop-shadow(0 0 2px #ff9800); }
+    50% { filter: drop-shadow(0 0 6px #ff5722); }
+    100% { filter: drop-shadow(0 0 2px #ff9800); }
+}
+
+.flame-icon.glow {
+    animation: flicker 1.2s infinite;
+}
+
+/* Button Group layout (for multiple buttons stacked) */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+/* Word Chips - specific secondary style only for options/popup if needed */
+.word-chip.secondary {
+    background: #f3f0ff; /* Lighter background for secondary chips */
+    color: #444; /* Ensure text color is readable */
+}
+
+.word-chip.secondary:hover {
+    background: #e3dcff;
+}
+
+/* Hiding suggested words section */
+.suggested-section.hidden {
+    display: none;
+}
+
+/* Overrides for text elements for specific spacing if needed,
+   otherwise rely on shared.css definitions for font-size/color */
+.subtext {
+    margin-top: 5px; /* Adjust spacing as needed for popup/options */
+    margin-bottom: 15px;
+}

@@ -1,0 +1,73 @@
+/* === Styles Specific to Stats Page (stats.html) === */
+
+/* Removed old body {} block - now in base.css */
+/* Removed old .card {} and .card h2 {} blocks - now in shared.css */
+/* Removed old footer {} block - now in shared.css */
+/* Removed h1 { ... } block - now in base.css and shared.css */
+
+.stats-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    /* Added display: flex and flex-direction for better layout control in stats page */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Consistent spacing between major sections/cards */
+}
+
+/* Specific styling for lists within the stats page (e.g., top ick words) */
+ul {
+    /* list-style: none; padding-left: 0; -- These are already in base.css and should be inherited */
+    margin: 0; /* Ensure no default margin from ul */
+}
+
+ul li {
+    padding: 10px 0; /* Slightly more padding for stats items */
+    border-bottom: 1px solid #eee;
+    display: flex; /* Allow for flexible alignment of content, e.g., number and text */
+    justify-content: space-between; /* Push items to ends */
+    align-items: center;
+    font-size: 1.05em; /* Slightly larger text for list items */
+    color: #444;
+}
+
+ul li:last-child {
+    border-bottom: none; /* No border on the last item */
+}
+
+ul li .count { /* Style for counts next to words */
+    font-weight: bold;
+    color: #7a6ee6; /* Highlight count */
+    margin-left: 10px;
+    flex-shrink: 0; /* Prevent count from shrinking */
+}
+
+
+/* Affirmation Message */
+.affirmation {
+    text-align: center;
+    font-size: 1.1em;
+    color: #666;
+    margin-top: 10px; /* Adjust margin as needed */
+    margin-bottom: 20px;
+    font-style: italic;
+    padding: 10px 15px;
+    background-color: #fdfdfd;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.03);
+}
+
+/* Specific layout for rows of buttons, if distinct from general button-group */
+.button-row {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 15px; /* Larger gap between buttons */
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* Removed styles for .week-bar, .warning, .highlight, .modal, .modal-buttons, #confirmReset, #cancelReset
+   as these are now handled by shared.css or base.css.
+   Buttons within .button-row should use classes like button primary, button secondary etc.
+*/

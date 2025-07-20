@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Check-In</title>
+  <link rel="stylesheet" href="base.css" />
+  <link rel="stylesheet" href="shared.css" />
+  <link rel="stylesheet" href="stats.css" />
+  </head>
+<body>
+  <div class="container">
+    <h1>📝 Daily Check-In</h1>
+    <p class="intro">How are you feeling today?</p>
+
+    <form id="checkinForm">
+      <label>Mood:</label>
+      <div class="mood-row">
+        <label><input type="radio" name="mood" value="😊" required /> 😊</label>
+        <label><input type="radio" name="mood" value="😐" /> 😐</label>
+        <label><input type="radio" name="mood" value="😢" /> 😢</label>
+        <label><input type="radio" name="mood" value="😠" /> 😠</label>
+      </div>
+
+      <label for="notes">Anything you'd like to note?</label>
+      <textarea id="notes" rows="4" placeholder="Optional..."></textarea>
+
+      <button type="submit" class="primary">Save Check-In</button>
+    </form>
+
+    <div class="nav-buttons">
+      <button id="backBtn" class="secondary">← Back</button>
+      <button id="viewStatsBtn" class="secondary">View Stats →</button>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="utils.js"></script>
+  <script src="nav.js"></script>
+  <script src="checkin.js"></script>
+</body>
+</html>
